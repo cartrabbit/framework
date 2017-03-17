@@ -1,8 +1,8 @@
 <?php namespace Cartrabbit\Framework;
 
 use Illuminate\Support\ServiceProvider;
-use vierbergenlars\SemVer\version as SemVersion;
-use vierbergenlars\SemVer\expression as SemVersionExpression;
+//use vierbergenlars\SemVer\version as SemVersion;
+//use vierbergenlars\SemVer\expression as SemVersionExpression;
 use Illuminate\Database\Capsule\Manager as CapsuleManager;
 use Illuminate\Database\Schema\Blueprint as SchemaBlueprint;
 
@@ -14,7 +14,7 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
     /**
      * The application's version.
      */
-    const VERSION = '0.9.13';
+    const VERSION = '1.0.0';
 
     /**
      * The application's version.
@@ -140,8 +140,8 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
     {
         static::$instance = $this;
 
-        $this->version = new SemVersion(self::VERSION);
-
+//        $this->version = new SemVersion(self::VERSION);
+        $this->version = self::VERSION;
         $this->instance('app', $this);
         $this->instance('Illuminate\Container\Container', $this);
 
@@ -196,7 +196,14 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
     {
         $constraint = array_get($config, 'constraint', self::VERSION);
 
-        return $this->version->satisfies(new SemVersionExpression($constraint));
+        $constraintArray = explode(',', $config['constraint']);
+        if(in_array(self::VERSION, $constraintArray)){
+            return true;
+        } else {
+            return false;
+        }
+
+//        return $this->version->satisfies(new SemVersionExpression($constraint));
     }
 
     /**
@@ -269,28 +276,28 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
             array_get($config, 'panels', [])
         );
 
-        $this->loadPluginX(
-            'enqueue',
-            array_get($config, 'enqueue', [])
-        );
+//        $this->loadPluginX(
+//            'enqueue',
+//            array_get($config, 'enqueue', [])
+//        );
 
-        $this->loadPluginX(
-            'shortcode',
-            array_get($config, 'shortcodes', [])
-        );
+//        $this->loadPluginX(
+//            'shortcode',
+//            array_get($config, 'shortcodes', [])
+//        );
 
-        $this->loadPluginX(
-            'widget',
-            array_get($config, 'widgets', [])
-        );
+//        $this->loadPluginX(
+//            'widget',
+//            array_get($config, 'widgets', [])
+//        );
 
-        $this->loadPluginAPIs(
-            array_get($config, 'apis', [])
-        );
+//        $this->loadPluginAPIs(
+//            array_get($config, 'apis', [])
+//        );
 
-        $this->addPluginTwigNamespaces(
-            array_get($config, 'views', [])
-        );
+//        $this->addPluginTwigNamespaces(
+//            array_get($config, 'views', [])
+//        );
 
         $this->addPluginViewGlobals(
             array_get($config, 'viewGlobals', [])
@@ -517,12 +524,12 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
             }
 
             $this->loadWith($activator, [
-                'http',
+//                'http',
                 'router',
-                'enqueue',
+//                'enqueue',
                 'panel',
-                'shortcode',
-                'widget'
+//                'shortcode',
+//                'widget'
             ]);
         }
     }
@@ -555,12 +562,12 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
             }
 
             $this->loadWith($deactivator, [
-                'http',
+//                'http',
                 'router',
-                'enqueue',
+//                'enqueue',
                 'panel',
-                'shortcode',
-                'widget'
+//                'shortcode',
+//                'widget'
             ]);
         }
 
@@ -616,12 +623,12 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
             }
 
             $this->loadWith($deleter, [
-                'http',
+//                'http',
                 'router',
-                'enqueue',
+//                'enqueue',
                 'panel',
-                'shortcode',
-                'widget'
+//                'shortcode',
+//                'widget'
             ]);
         }
 
@@ -757,10 +764,6 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
     {
         $this->register($this->resolveProviderClass(
             'Cartrabbit\Framework\Providers\CartrabbitServiceProvider'
-        ));
-
-        $this->register($this->resolveProviderClass(
-            'Cartrabbit\Framework\Providers\TwigServiceProvider'
         ));
     }
 
