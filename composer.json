@@ -1,0 +1,17 @@
+{
+  "name": "cartrabbit/framework",
+  "description": "Cartrabbit",
+  "license": "MIT",
+  "require": {
+    "jgrossi/corcel": "^1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Cartrabbit\\Framework\\": "Cartrabbit/Framework/"
+    }
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "minimum-stability": "dev"
+}
