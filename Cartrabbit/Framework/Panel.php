@@ -39,7 +39,7 @@ class Panel {
     protected $app;
 
     /**
-     * @var \Cartrabbit\Framework\Http
+     * @var \Illuminate\Http\Request
      */
     protected $http;
 
@@ -59,9 +59,9 @@ class Panel {
      * Adds the WordPress hook during construction.
      *
      * @param \Cartrabbit\Framework\Application $app
-     * @param \Cartrabbit\Framework\Http        $http
+     * @param \Illuminate\Http\Request        $http
      */
-    public function __construct(Application $app, Http $http)
+    public function __construct(Application $app, \Illuminate\Http\Request $http)
     {
         $this->app = $app;
         $this->http = $http;

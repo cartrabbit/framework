@@ -32,7 +32,7 @@ class Router {
     protected $app;
 
     /**
-     * @var \Cartrabbit\Framework\Http
+     * @var \Illuminate\Http\Request
      */
     protected $http;
 
@@ -76,7 +76,7 @@ class Router {
      * @param \Cartrabbit\Framework\Application $app
      * @param \Cartrabbit\Framework\Http        $http
      */
-    public function __construct(Application $app, Http $http)
+    public function __construct(Application $app, \Illuminate\Http\Request $http)
     {
         $this->app = $app;
         $this->http = $http;
