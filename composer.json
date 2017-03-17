@@ -3,7 +3,10 @@
   "description": "Cartrabbit",
   "license": "MIT",
   "require": {
-    "jgrossi/corcel": "^1.1"
+    "jgrossi/corcel": "^1.1",
+    "illuminate/http": "~5.0",
+    "flycartinc/hook": "dev-master",
+    "flycartinc/validator": "dev-master"
   },
   "autoload": {
     "psr-4": {
