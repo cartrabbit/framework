@@ -1,4 +1,4 @@
-<?php namespace Cartrabit\Framework;
+<?php namespace Cartrabbit\Framework;
 
 use Illuminate\Support\ServiceProvider;
 use vierbergenlars\SemVer\version as SemVersion;
@@ -7,7 +7,7 @@ use Illuminate\Database\Capsule\Manager as CapsuleManager;
 use Illuminate\Database\Schema\Blueprint as SchemaBlueprint;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  */
 class Application extends \Illuminate\Container\Container implements \Illuminate\Contracts\Foundation\Application {
 
@@ -24,7 +24,7 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
     protected $version;
 
     /**
-     * @var \Cartrabit\Framework\Application
+     * @var \Cartrabbit\Framework\Application
      */
     protected static $instance;
 
@@ -157,7 +157,7 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
      */
     public function basePath()
     {
-        return content_directory() . '/cartrabit-cache';
+        return content_directory() . '/cartrabbit-cache';
     }
 
     /**
@@ -180,7 +180,7 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
     {
         if ( ! isset($this->configurations[$root]))
         {
-            $this->configurations[$root] = @require_once "$root/cartrabit.config.php" ?: [];
+            $this->configurations[$root] = @require_once "$root/cartrabbit.config.php" ?: [];
         }
 
         return $this->configurations[$root];
@@ -459,7 +459,7 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
     /**
      * Register a plugin.
      *
-     * @param \Cartrabit\Framework\Plugin $plugin
+     * @param \Cartrabbit\Framework\Plugin $plugin
      */
     public function registerPlugin(Plugin $plugin)
     {
@@ -666,7 +666,7 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
     /**
      * Register all of the plugin's providers.
      *
-     * @param \Cartrabit\Framework\Plugin $plugin
+     * @param \Cartrabbit\Framework\Plugin $plugin
      * @return void
      */
     protected function registerPluginProviders(Plugin $plugin)
@@ -684,7 +684,7 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
     /**
      * Register all of the plugin's aliases.
      *
-     * @param \Cartrabit\Framework\Plugin $plugin
+     * @param \Cartrabbit\Framework\Plugin $plugin
      * @return void
      */
     protected function registerPluginAliases(Plugin $plugin)
@@ -703,7 +703,7 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
 //    /**
 //     * Register the plugin's configured requires.
 //     *
-//     * @param \Cartrabit\Framework\Plugin $plugin
+//     * @param \Cartrabbit\Framework\Plugin $plugin
 //     */
 //    protected function registerPluginRequires(Plugin $plugin)
 //    {
@@ -719,7 +719,7 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
 //    /**
 //     * Register the plugin's configured routes.
 //     *
-//     * @param \Cartrabit\Framework\Plugin $plugin
+//     * @param \Cartrabbit\Framework\Plugin $plugin
 //     */
 //    protected function registerPluginRoutes(Plugin $plugin)
 //    {
@@ -735,7 +735,7 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
 //    /**
 //     * Register the plugin's configured shortcodes.
 //     *
-//     * @param \Cartrabit\Framework\Plugin $plugin
+//     * @param \Cartrabbit\Framework\Plugin $plugin
 //     */
 //    protected function registerPluginShortcodes(Plugin $plugin)
 //    {
@@ -756,11 +756,11 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
     protected function registerBaseProviders()
     {
         $this->register($this->resolveProviderClass(
-            'Cartrabit\Framework\Providers\CartrabitServiceProvider'
+            'Cartrabbit\Framework\Providers\CartrabbitServiceProvider'
         ));
 
         $this->register($this->resolveProviderClass(
-            'Cartrabit\Framework\Providers\TwigServiceProvider'
+            'Cartrabbit\Framework\Providers\TwigServiceProvider'
         ));
     }
 

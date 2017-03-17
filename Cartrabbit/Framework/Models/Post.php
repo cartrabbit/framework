@@ -1,11 +1,11 @@
-<?php namespace Cartrabit\Framework\Models;
+<?php namespace Cartrabbit\Framework\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Cartrabit\Framework\Models\SoftDeletes\SoftDeletes;
+use Cartrabbit\Framework\Models\SoftDeletes\SoftDeletes;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  */
 class Post extends Model {
 

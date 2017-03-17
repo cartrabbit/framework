@@ -1,9 +1,9 @@
-<?php namespace Cartrabit\Framework\Models;
+<?php namespace Cartrabbit\Framework\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  */
 class Option extends Model {
 

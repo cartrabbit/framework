@@ -1,14 +1,14 @@
-<?php namespace Cartrabit\Framework;
+<?php namespace Cartrabbit\Framework;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  */
 class Notifier {
 
     /**
      * The notifier instance.
      *
-     * @var \Cartrabit\Framework\Notifier
+     * @var \Cartrabbit\Framework\Notifier
      */
     protected static $instance;
 

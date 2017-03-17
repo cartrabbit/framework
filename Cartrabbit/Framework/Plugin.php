@@ -1,9 +1,9 @@
-<?php namespace Cartrabit\Framework;
+<?php namespace Cartrabbit\Framework;
 
 use Illuminate\Contracts\Container\Container;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  */
 interface Plugin {
 

@@ -1,7 +1,7 @@
-<?php namespace Cartrabit\Framework;
+<?php namespace Cartrabbit\Framework;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  */
 class Enqueue {
 
@@ -22,12 +22,12 @@ class Enqueue {
     ];
 
     /**
-     * @var \Cartrabit\Framework\Application
+     * @var \Cartrabbit\Framework\Application
      */
     protected $app;
 
     /**
-     * @param \Cartrabit\Framework\Application $app
+     * @param \Cartrabbit\Framework\Application $app
      */
     public function __construct(Application $app)
     {

@@ -1,4 +1,4 @@
-<?php namespace Cartrabit\Framework;
+<?php namespace Cartrabbit\Framework;
 
 use Symfony\Component\HttpFoundation\Session\Session as BaseSession;
 

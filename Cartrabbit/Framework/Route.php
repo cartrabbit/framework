@@ -1,16 +1,16 @@
-<?php namespace Cartrabit\Framework;
+<?php namespace Cartrabbit\Framework;
 
 use Exception;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  */
 class Route {
 
     /**
-     * @var \Cartrabit\Framework\Application
+     * @var \Cartrabbit\Framework\Application
      */
     protected $app;
 
@@ -35,7 +35,7 @@ class Route {
     protected $uses;
 
     /**
-     * @param \Cartrabit\Framework\Application $app
+     * @param \Cartrabbit\Framework\Application $app
      * @param                                $data
      * @param                                $parameters
      */

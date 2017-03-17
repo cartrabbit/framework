@@ -1,19 +1,19 @@
-<?php namespace Cartrabit\Framework;
+<?php namespace Cartrabbit\Framework;
 
 use Exception;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  */
 class Shortcode {
 
     /**
-     * @var \Cartrabit\Framework\Application
+     * @var \Cartrabbit\Framework\Application
      */
     protected $app;
 
     /**
-     * @param \Cartrabit\Framework\Application $app
+     * @param \Cartrabbit\Framework\Application $app
      */
     public function __construct(Application $app)
     {

@@ -1,4 +1,4 @@
-<?php namespace Cartrabit\Framework\Providers;
+<?php namespace Cartrabbit\Framework\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Twig_Environment;
@@ -7,7 +7,7 @@ use Twig_Extension_Debug;
 use Twig_SimpleFunction;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  */
 class TwigServiceProvider extends ServiceProvider {
 
@@ -47,7 +47,7 @@ class TwigServiceProvider extends ServiceProvider {
         {
             return [
                 'dd',
-                'cartrabit',
+                'cartrabbit',
                 'view',
                 'content_directory',
                 'plugin_directory',

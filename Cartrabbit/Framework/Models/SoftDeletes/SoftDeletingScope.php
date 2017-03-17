@@ -1,4 +1,4 @@
-<?php namespace Cartrabit\Framework\Models\SoftDeletes;
+<?php namespace Cartrabbit\Framework\Models\SoftDeletes;
 
 use Illuminate\Database\Eloquent\SoftDeletingScope as BaseSoftDeletingScope;
 use Illuminate\Database\Eloquent\Builder;

@@ -1,11 +1,11 @@
-<?php namespace Cartrabit\Framework;
+<?php namespace Cartrabbit\Framework;
 
 use Closure;
 use InvalidArgumentException;
-use Cartrabit\Framework\Exceptions\HttpErrorException;
+use Cartrabbit\Framework\Exceptions\HttpErrorException;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  *
  * @method void get()    get(array $parameters)    Adds a get route.
  * @method void post()   post(array $parameters)   Adds a post route.
@@ -27,12 +27,12 @@ class Router {
     ];
 
     /**
-     * @var \Cartrabit\Framework\Application
+     * @var \Cartrabbit\Framework\Application
      */
     protected $app;
 
     /**
-     * @var \Cartrabit\Framework\Http
+     * @var \Cartrabbit\Framework\Http
      */
     protected $http;
 
@@ -73,8 +73,8 @@ class Router {
     /**
      * Adds the action hooks for WordPress.
      *
-     * @param \Cartrabit\Framework\Application $app
-     * @param \Cartrabit\Framework\Http        $http
+     * @param \Cartrabbit\Framework\Application $app
+     * @param \Cartrabbit\Framework\Http        $http
      */
     public function __construct(Application $app, Http $http)
     {
@@ -93,7 +93,7 @@ class Router {
      */
     public function boot()
     {
-        add_rewrite_tag('%cartrabit_route%', '(.+)');
+        add_rewrite_tag('%cartrabbit_route%', '(.+)');
         
         if(is_array($this->routes[$this->http->method()]))
         {
@@ -132,13 +132,13 @@ class Router {
         {
             foreach ($matches[1] as $id => $param)
             {
-                add_rewrite_tag('%cartrabit_param_' . $param . '%', '(.+)');
-                $url .= 'cartrabit_param_' . $param . '=$matches[' . ($id + 1) . ']&';
+                add_rewrite_tag('%cartrabbit_param_' . $param . '%', '(.+)');
+                $url .= 'cartrabbit_param_' . $param . '=$matches[' . ($id + 1) . ']&';
                 $params['parameters'][$param] = null;
             }
         }
 
-        add_rewrite_rule($uri . '$', $url . 'cartrabit_route=' . urlencode(json_encode($params)), 'top');
+        add_rewrite_rule($uri . '$', $url . 'cartrabbit_route=' . urlencode(json_encode($params)), 'top');
     }
 
     /**
@@ -200,12 +200,12 @@ class Router {
      */
     public function parseRequest($wp)
     {
-        if ( ! array_key_exists('cartrabit_route', $wp->query_vars))
+        if ( ! array_key_exists('cartrabbit_route', $wp->query_vars))
         {
             return;
         }
 
-        $data = @json_decode($wp->query_vars['cartrabit_route'], true);
+        $data = @json_decode($wp->query_vars['cartrabbit_route'], true);
         $route = null;
 
         if (isset($data['id']) && isset($this->routes[$this->http->method()][$data['id']]))
@@ -229,12 +229,12 @@ class Router {
 
         foreach ($data['parameters'] as $key => $val)
         {
-            if ( ! isset($wp->query_vars['cartrabit_param_' . $key]))
+            if ( ! isset($wp->query_vars['cartrabbit_param_' . $key]))
             {
                 return;
             }
 
-            $data['parameters'][$key] = $wp->query_vars['cartrabit_param_' . $key];
+            $data['parameters'][$key] = $wp->query_vars['cartrabbit_param_' . $key];
         }
 
         try {
@@ -281,7 +281,7 @@ class Router {
      *
      * @param $data
      * @param $params
-     * @return \Cartrabit\Framework\Route
+     * @return \Cartrabbit\Framework\Route
      */
     protected function buildRoute($data, $params)
     {
@@ -291,7 +291,7 @@ class Router {
     /**
      * Processes a request.
      *
-     * @param \Cartrabit\Framework\Route $route
+     * @param \Cartrabbit\Framework\Route $route
      * @return void
      */
     protected function processRequest(Route $route)
@@ -302,7 +302,7 @@ class Router {
     /**
      * Processes a response.
      *
-     * @param  \Cartrabit\Framework\Response $response
+     * @param  \Cartrabbit\Framework\Response $response
      * @return void
      */
     protected function processResponse(Response $response)

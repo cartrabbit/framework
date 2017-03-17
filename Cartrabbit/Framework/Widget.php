@@ -1,14 +1,14 @@
-<?php namespace Cartrabit\Framework;
+<?php namespace Cartrabbit\Framework;
 
-use Cartrabit\Framework\Application;
+use Cartrabbit\Framework\Application;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  */
 class Widget {
 
     /**
-     * @var \Cartrabit\Framework\Application
+     * @var \Cartrabbit\Framework\Application
      */
     protected $app;
 
@@ -18,7 +18,7 @@ class Widget {
     protected $widgets = [];
 
     /**
-     * @param \Cartrabit\Framework\Application $app
+     * @param \Cartrabbit\Framework\Application $app
      */
     public function __construct(Application $app)
     {

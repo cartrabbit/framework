@@ -1,7 +1,7 @@
-<?php namespace Cartrabit\Framework;
+<?php namespace Cartrabbit\Framework;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  */
 class RedirectResponse extends Response {
 
@@ -71,7 +71,7 @@ class RedirectResponse extends Response {
      *
      * @param  string $key
      * @param  mixed  $val
-     * @return \Cartrabit\Framework\RedirectResponse
+     * @return \Cartrabbit\Framework\RedirectResponse
      */
     public function with($key, $val = null)
     {
@@ -91,7 +91,7 @@ class RedirectResponse extends Response {
     /**
      * Actually flashes in the session data.
      *
-     * @return \Cartrabit\Framework\RedirectResponse
+     * @return \Cartrabbit\Framework\RedirectResponse
      */
     public function flash()
     {

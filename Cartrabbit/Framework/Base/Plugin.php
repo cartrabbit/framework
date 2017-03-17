@@ -1,10 +1,10 @@
-<?php namespace Cartrabit\Framework\Base;
+<?php namespace Cartrabbit\Framework\Base;
 
-use Cartrabit\Framework\Plugin as PluginContract;
+use Cartrabbit\Framework\Plugin as PluginContract;
 use Illuminate\Contracts\Container\Container;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  */
 class Plugin implements PluginContract {
 
@@ -60,8 +60,8 @@ class Plugin implements PluginContract {
     {
         if (is_null($this->config))
         {
-            $this->config = file_exists("{$this->getBasePath()}/cartrabit.config.php")
-                ? require "{$this->getBasePath()}/cartrabit.config.php"
+            $this->config = file_exists("{$this->getBasePath()}/cartrabbit.config.php")
+                ? require "{$this->getBasePath()}/cartrabbit.config.php"
                 : [];
         }
 

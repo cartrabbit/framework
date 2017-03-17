@@ -1,4 +1,4 @@
-<?php namespace Cartrabit\Framework\Exceptions;
+<?php namespace Cartrabbit\Framework\Exceptions;
 
 class HttpErrorException extends \Exception {
 
@@ -12,7 +12,7 @@ class HttpErrorException extends \Exception {
     /**
      * The response.
      *
-     * @var \Cartrabit\Framework\Response
+     * @var \Cartrabbit\Framework\Response
      */
     protected $response = null;
 

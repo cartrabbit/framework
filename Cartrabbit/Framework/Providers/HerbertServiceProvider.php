@@ -1,14 +1,14 @@
-<?php namespace Cartrabit\Framework\Providers;
+<?php namespace Cartrabbit\Framework\Providers;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Cookie\CookieJar;
-use Cartrabit\Framework\Session;
+use Cartrabbit\Framework\Session;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  */
-class CartrabitServiceProvider extends ServiceProvider {
+class CartrabbitServiceProvider extends ServiceProvider {
 
     /**
      * Register the service provider.
@@ -28,82 +28,82 @@ class CartrabitServiceProvider extends ServiceProvider {
 
         $this->app->instance(
             'http',
-            \Cartrabit\Framework\Http::capture()
+            \Cartrabbit\Framework\Http::capture()
         );
 
         $this->app->alias(
             'http',
-            'Cartrabit\Framework\Http'
+            'Cartrabbit\Framework\Http'
         );
 
         $this->app->instance(
             'router',
-            $this->app->make('Cartrabit\Framework\Router', ['app' => $this->app])
+            $this->app->make('Cartrabbit\Framework\Router', ['app' => $this->app])
         );
 
         $this->app->bind(
             'route',
-            'Cartrabit\Framework\Route'
+            'Cartrabbit\Framework\Route'
         );
 
         $this->app->instance(
             'enqueue',
-            $this->app->make('Cartrabit\Framework\Enqueue', ['app' => $this->app])
+            $this->app->make('Cartrabbit\Framework\Enqueue', ['app' => $this->app])
         );
 
         $this->app->alias(
             'enqueue',
-            'Cartrabit\Framework\Enqueue'
+            'Cartrabbit\Framework\Enqueue'
         );
 
         $this->app->instance(
             'panel',
-            $this->app->make('Cartrabit\Framework\Panel', ['app' => $this->app])
+            $this->app->make('Cartrabbit\Framework\Panel', ['app' => $this->app])
         );
 
         $this->app->alias(
             'panel',
-            'Cartrabit\Framework\Panel'
+            'Cartrabbit\Framework\Panel'
         );
 
         $this->app->instance(
             'shortcode',
-            $this->app->make('Cartrabit\Framework\Shortcode', ['app' => $this->app])
+            $this->app->make('Cartrabbit\Framework\Shortcode', ['app' => $this->app])
         );
 
         $this->app->alias(
             'shortcode',
-            'Cartrabit\Framework\Shortcode'
+            'Cartrabbit\Framework\Shortcode'
         );
 
         $this->app->instance(
             'widget',
-            $this->app->make('Cartrabit\Framework\Widget', ['app' => $this->app])
+            $this->app->make('Cartrabbit\Framework\Widget', ['app' => $this->app])
         );
 
         $this->app->alias(
             'widget',
-            'Cartrabit\Framework\Widget'
+            'Cartrabbit\Framework\Widget'
         );
 
         $this->app->instance(
             'session',
-            $this->app->make('Cartrabit\Framework\Session', ['app' => $this->app])
+            $this->app->make('Cartrabbit\Framework\Session', ['app' => $this->app])
         );
 
         $this->app->alias(
             'session',
-            'Cartrabit\Framework\Session'
+            'Cartrabbit\Framework\Session'
         );
 
         $this->app->instance(
             'notifier',
-            $this->app->make('Cartrabit\Framework\Notifier', ['app' => $this->app])
+            $this->app->make('Cartrabbit\Framework\Notifier', ['app' => $this->app])
         );
 
         $this->app->alias(
             'notifier',
-            'Cartrabit\Framework\Notifier'
+            'Cartrabbit\Framework\Notifier'
         );
 
         $this->app->singleton(

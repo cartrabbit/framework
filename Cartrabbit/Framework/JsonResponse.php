@@ -1,10 +1,10 @@
-<?php namespace Cartrabit\Framework;
+<?php namespace Cartrabbit\Framework;
 
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  */
 class JsonResponse extends Response {
 

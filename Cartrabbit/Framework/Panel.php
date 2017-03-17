@@ -1,13 +1,13 @@
-<?php namespace Cartrabit\Framework;
+<?php namespace Cartrabbit\Framework;
 
 use Exception;
 use Illuminate\Contracts\Support\Jsonable;
 use InvalidArgumentException;
 use JsonSerializable;
-use Cartrabit\Framework\Exceptions\HttpErrorException;
+use Cartrabbit\Framework\Exceptions\HttpErrorException;
 
 /**
- * @see http://getcartrabit.com
+ * @see http://getcartrabbit.com
  */
 class Panel {
 
@@ -34,12 +34,12 @@ class Panel {
     ];
 
     /**
-     * @var \Cartrabit\Framework\Application
+     * @var \Cartrabbit\Framework\Application
      */
     protected $app;
 
     /**
-     * @var \Cartrabit\Framework\Http
+     * @var \Cartrabbit\Framework\Http
      */
     protected $http;
 
@@ -58,8 +58,8 @@ class Panel {
     /**
      * Adds the WordPress hook during construction.
      *
-     * @param \Cartrabit\Framework\Application $app
-     * @param \Cartrabit\Framework\Http        $http
+     * @param \Cartrabbit\Framework\Application $app
+     * @param \Cartrabbit\Framework\Http        $http
      */
     public function __construct(Application $app, Http $http)
     {
