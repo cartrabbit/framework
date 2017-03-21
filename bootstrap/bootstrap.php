@@ -88,6 +88,11 @@ foreach ($iterator as $directory)
     @require_once $root.'/plugin.php';
 
     $cartrabbit->loadPlugin($config);
+
+    if ( is_plugin_active($plugin) ) {
+        $activePlugin = new \Cartrabbit\Framework\Base\Plugin(plugin_dir_path( $directory->getPath().'/'.$plugin ));
+        $cartrabbit->registerPlugin($activePlugin);
+    }
 }
 
 /**
