@@ -5,6 +5,7 @@ use Illuminate\Support\ServiceProvider;
 //use vierbergenlars\SemVer\expression as SemVersionExpression;
 use Illuminate\Database\Capsule\Manager as CapsuleManager;
 use Illuminate\Database\Schema\Blueprint as SchemaBlueprint;
+use Cartrabbit\Framework\Facades\Facade;
 
 /**
  * @see http://getcartrabbit.com
@@ -1037,7 +1038,7 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
         $this->booted = true;
 
         $this->setFacade();
-        
+
         $this->fireAppCallbacks($this->bootedCallbacks);
     }
 
@@ -1046,7 +1047,7 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
      * */
     protected function setFacade()
     {
-        \Cartrabbit\Framework\Facades\Facade::setFacadeApplication($this);
+        Facade::setFacadeApplication($this);
     }
 
     /**
