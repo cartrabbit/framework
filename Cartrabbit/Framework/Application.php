@@ -1036,7 +1036,17 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
 
         $this->booted = true;
 
+        $this->setFacade();
+        
         $this->fireAppCallbacks($this->bootedCallbacks);
+    }
+
+    /**
+     * To set Facade
+     * */
+    protected function setFacade()
+    {
+        \Cartrabbit\Framework\Facades\Facade::setFacadeApplication($this);
     }
 
     /**
