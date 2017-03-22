@@ -80,17 +80,17 @@ class CartrabbitServiceProvider extends ServiceProvider {
 //            'widget',
 //            'Cartrabbit\Framework\Widget'
 //        );
-//
-//        $this->app->instance(
-//            'session',
-//            $this->app->make('Symfony\Component\HttpFoundation\Session\Session', ['app' => $this->app])
-//        );
-//
-//        $this->app->alias(
-//            'session',
-//            'Symfony\Component\HttpFoundation\Session\Session'
-//        );
-//
+
+        $this->app->instance(
+            'session',
+            $this->app->make('Symfony\Component\HttpFoundation\Session\Session', ['app' => $this->app])
+        );
+
+        $this->app->alias(
+            'session',
+            'Symfony\Component\HttpFoundation\Session\Session'
+        );
+
 //        $this->app->instance(
 //            'notifier',
 //            $this->app->make('Cartrabbit\Framework\Notifier', ['app' => $this->app])
@@ -147,7 +147,7 @@ class CartrabbitServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        //$this->app['session']->start();
+//        $this->app['session']->start();
     }
 
 }
