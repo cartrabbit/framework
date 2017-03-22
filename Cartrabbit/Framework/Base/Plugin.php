@@ -3,9 +3,6 @@
 use Cartrabbit\Framework\Plugin as PluginContract;
 use Illuminate\Contracts\Container\Container;
 
-/**
- * @see http://getcartrabbit.com
- */
 class Plugin implements PluginContract {
 
     /**

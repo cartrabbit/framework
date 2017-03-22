@@ -6,9 +6,6 @@ use InvalidArgumentException;
 use JsonSerializable;
 use Cartrabbit\Framework\Exceptions\HttpErrorException;
 
-/**
- * @see http://getcartrabbit.com
- */
 class Panel {
 
     /**

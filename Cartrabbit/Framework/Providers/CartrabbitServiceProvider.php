@@ -3,9 +3,6 @@
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Support\ServiceProvider;
 
-/**
- * @see http://getcartrabbit.com
- */
 class CartrabbitServiceProvider extends ServiceProvider {
 
     /**
@@ -148,7 +145,7 @@ class CartrabbitServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->app['session']->start();
+        //$this->app['session']->start();
     }
 
 }

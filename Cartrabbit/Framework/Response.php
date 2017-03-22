@@ -1,8 +1,5 @@
 <?php namespace Cartrabbit\Framework;
 
-/**
- * @see http://getcartrabbit.com
- */
 class Response {
 
     /**

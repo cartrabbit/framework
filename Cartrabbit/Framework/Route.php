@@ -4,9 +4,6 @@ use Exception;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
 
-/**
- * @see http://getcartrabbit.com
- */
 class Route {
 
     /**

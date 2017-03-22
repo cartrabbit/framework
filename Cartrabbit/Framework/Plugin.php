@@ -2,9 +2,6 @@
 
 use Illuminate\Contracts\Container\Container;
 
-/**
- * @see http://getcartrabbit.com
- */
 interface Plugin {
 
     /**

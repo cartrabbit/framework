@@ -5,8 +5,6 @@ use InvalidArgumentException;
 use Cartrabbit\Framework\Exceptions\HttpErrorException;
 
 /**
- * @see http://getcartrabbit.com
- *
  * @method void get()    get(array $parameters)    Adds a get route.
  * @method void post()   post(array $parameters)   Adds a post route.
  * @method void put()    put(array $parameters)    Adds a put route.

@@ -1,4 +1,13 @@
-<?php namespace Cartrabbit\Framework;
+<?php
+/**
+ * Cartrabbit - A PHP Framework For Wordpress
+ *
+ * @package  Cartrabbit
+ * @author   Ashlin <ashlin@flycart.org>
+ * Based on Herbert Framework
+ */
+
+namespace Cartrabbit\Framework;
 
 use Illuminate\Support\ServiceProvider;
 //use vierbergenlars\SemVer\version as SemVersion;
@@ -7,9 +16,6 @@ use Illuminate\Database\Capsule\Manager as CapsuleManager;
 use Illuminate\Database\Schema\Blueprint as SchemaBlueprint;
 use Cartrabbit\Framework\Facades\Facade;
 
-/**
- * @see http://getcartrabbit.com
- */
 class Application extends \Illuminate\Container\Container implements \Illuminate\Contracts\Foundation\Application {
 
     /**

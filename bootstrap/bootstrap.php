@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cartrabbit - A PHP Framework For Wordpress
+ *
+ * @package  Cartrabbit
+ * @author   Ashlin <ashlin@flycart.org>
+ * Based on Herbert Framework
+ */
 
 /**
  * Ensure this is only ran once.
