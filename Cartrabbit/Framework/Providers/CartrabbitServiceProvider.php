@@ -129,8 +129,10 @@ class CartrabbitServiceProvider extends ServiceProvider {
             'database' => DB_NAME,
             'username' => DB_USER,
             'password' => DB_PASSWORD,
-            'charset' => DB_CHARSET,
-            'collation' => DB_COLLATE ?: $wpdb->collate,
+//            'charset' => DB_CHARSET,
+//            'collation' => DB_COLLATE ?: $wpdb->collate,
+            'charset' => $wpdb->charset,
+            'collation' => $wpdb->collate,
             'prefix' => $wpdb->prefix
         ]);
 
