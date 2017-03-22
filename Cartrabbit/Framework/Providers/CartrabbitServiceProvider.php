@@ -84,15 +84,15 @@ class CartrabbitServiceProvider extends ServiceProvider {
 //            'Cartrabbit\Framework\Widget'
 //        );
 //
-        $this->app->instance(
-            'session',
-            $this->app->make('Symfony\Component\HttpFoundation\Session\Session', ['app' => $this->app])
-        );
+//        $this->app->instance(
+//            'session',
+//            $this->app->make('Symfony\Component\HttpFoundation\Session\Session', ['app' => $this->app])
+//        );
 //
-        $this->app->alias(
-            'session',
-            'Symfony\Component\HttpFoundation\Session\Session'
-        );
+//        $this->app->alias(
+//            'session',
+//            'Symfony\Component\HttpFoundation\Session\Session'
+//        );
 //
 //        $this->app->instance(
 //            'notifier',

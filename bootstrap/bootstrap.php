@@ -71,6 +71,10 @@ foreach ($iterator as $directory)
     // as WP doesn't allow closures to be passed here
     register_uninstall_hook($plugin, create_function('', 'cartrabbit()->deletePlugin(\'' . $root . '\');'));
 
+    // To register the plugin
+    $activePlugin = new \Cartrabbit\Framework\Base\Plugin(plugin_dir_path( $directory->getPath().'/'.$plugin ));
+    $cartrabbit->registerPlugin($activePlugin);
+
     if ( ! is_plugin_active($plugin))
     {
         continue;
@@ -88,11 +92,6 @@ foreach ($iterator as $directory)
     @require_once $root.'/plugin.php';
 
     $cartrabbit->loadPlugin($config);
-
-    if ( is_plugin_active($plugin) ) {
-        $activePlugin = new \Cartrabbit\Framework\Base\Plugin(plugin_dir_path( $directory->getPath().'/'.$plugin ));
-        $cartrabbit->registerPlugin($activePlugin);
-    }
 }
 
 /**
