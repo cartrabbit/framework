@@ -302,10 +302,6 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
 //            array_get($config, 'apis', [])
 //        );
 
-//        $this->addPluginTwigNamespaces(
-//            array_get($config, 'views', [])
-//        );
-
         $this->addPluginViewGlobals(
             array_get($config, 'viewGlobals', [])
         );
@@ -393,25 +389,6 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
         foreach ($requires as $require)
         {
             @require_once "$require";
-        }
-    }
-
-    /**
-     * Add all a plugin's twig namespaces.
-     *
-     * @param array $namespaces
-     * @return void
-     */
-    protected function addPluginTwigNamespaces($namespaces = [])
-    {
-        $loader = $this['twig.loader'];
-
-        foreach ($namespaces as $namespace => $paths)
-        {
-            foreach ((array) $paths as $path)
-            {
-                $loader->addPath($path, $namespace);
-            }
         }
     }
 

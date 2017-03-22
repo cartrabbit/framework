@@ -175,15 +175,15 @@ if ( ! function_exists('session_flashed'))
 if ( ! function_exists('view'))
 {
     /**
-     * Renders a twig view.
+     * Renders a view.
      *
      * @param  string $name
      * @param  array  $context
      * @return string
      */
-    function view($name, $context = [])
+    function view($name, $vars = null)
     {
-        return response(cartrabbit('Twig_Environment')->render($name, $context));
+        return \Cartrabbit\Framework\Views\HtmlView::getInstance()->loadView($name, $vars);
     }
 }
 
