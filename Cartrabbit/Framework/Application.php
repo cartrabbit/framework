@@ -958,7 +958,7 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
             $this->loadDeferredProvider($abstract);
         }
 
-        return parent::make($abstract, $parameters);
+        return parent::makeWith($abstract, $parameters);
     }
 
     /**
