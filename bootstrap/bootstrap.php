@@ -99,6 +99,8 @@ foreach ($iterator as $directory)
     @require_once $root.'/plugin.php';
 
     $cartrabbit->loadPlugin($config);
+
+    $cartrabbit->registerAllPaths($config['views']);
 }
 
 /**

@@ -749,6 +749,10 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
         $this->register($this->resolveProviderClass(
             'Cartrabbit\Framework\Providers\CartrabbitServiceProvider'
         ));
+        
+        $this->register($this->resolveProviderClass(
+            'Cartrabbit\Framework\Providers\ViewServiceProvider'
+        ));
     }
 
     /**
@@ -830,6 +834,18 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
         }
 
         return $provider;
+    }
+
+    /**
+     * To register all paths
+     * */
+    public function registerAllPaths(array $paths)
+    {
+        $this->paths = $paths;
+        foreach ($paths as $key => $path) {
+            $this->instance('path.'.$key, $path);
+        }
+        return $this;
     }
 
 
@@ -1270,5 +1286,4 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
     {
         return $this->basePath() . '/vendor/services.json';
     }
-
 }
