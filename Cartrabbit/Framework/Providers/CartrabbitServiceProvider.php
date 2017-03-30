@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Events\Dispatcher;
 
 class CartrabbitServiceProvider extends ServiceProvider {
 
@@ -20,6 +22,14 @@ class CartrabbitServiceProvider extends ServiceProvider {
                 : (defined('WP_DEBUG') ? 'local'
                     : 'production')
         );
+
+        $this->app->bind('filesystem', function () {
+            return new Filesystem();
+        });
+        
+        $this->app->bind('events', function ($container) {
+            return new Dispatcher($container);
+        });
 
 //        $this->app->instance(
 //            'http',

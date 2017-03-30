@@ -17,6 +17,12 @@ if (defined('CARTRABBIT_AUTOLOAD'))
 
 define('CARTRABBIT_AUTOLOAD', microtime(true));
 
+defined('CARTRABBIT_STORAGE') ? CARTRABBIT_STORAGE : define('CARTRABBIT_STORAGE', WP_CONTENT_DIR.DIRECTORY_SEPARATOR.'storage');
+
+if (!file_exists(CARTRABBIT_STORAGE)) {
+    mkdir(CARTRABBIT_STORAGE, 0777, true);
+}
+
 @require 'helpers.php';
 
 /**
