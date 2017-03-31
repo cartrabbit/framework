@@ -1,6 +1,7 @@
 <?php namespace Cartrabbit\Framework;
 
 use Closure;
+use Illuminate\Http\Request;
 use InvalidArgumentException;
 use Cartrabbit\Framework\Exceptions\HttpErrorException;
 
@@ -69,6 +70,11 @@ class Router {
     protected $valuePatternReplace = '([^\/]+)';
 
     /**
+     * @var array
+     */
+    protected $middlewares = array();
+
+    /**
      * Adds the action hooks for WordPress.
      *
      * @param \Cartrabbit\Framework\Application $app
@@ -92,15 +98,15 @@ class Router {
     public function boot()
     {
         add_rewrite_tag('%cartrabbit_route%', '(.+)');
-        
+
         if(is_array($this->routes[$this->http->method()]))
         {
             foreach ($this->routes[$this->http->method()] as $id => $route)
             {
                 $this->addRoute($route, $id, $this->http->method());
-            } 
+            }
         }
-        
+
     }
 
     /**
@@ -118,10 +124,10 @@ class Router {
         ];
 
         $uri = '^' . preg_replace(
-            $this->parameterPattern,
-            $this->valuePatternReplace,
-            str_replace('/', '\\/', $route['uri'])
-        );
+                $this->parameterPattern,
+                $this->valuePatternReplace,
+                str_replace('/', '\\/', $route['uri'])
+            );
 
         $url = 'index.php?';
 
@@ -170,6 +176,20 @@ class Router {
             'uri' => ltrim($parameters['uri'], '/')
         ]);
 
+        if ( isset( $parameters['middlewares'] ) )
+        {
+            $middlewares = $parameters['middlewares'];
+            if ( is_string( $middlewares ) )
+            {
+                $middlewares = array( $middlewares );
+            }
+            $parameters['middlewares'] = array_merge($this->middlewares, $middlewares);
+        }
+        else
+        {
+            $parameters['middlewares'] = $this->middlewares;
+        }
+
         $this->routes[$method][] = $route;
 
         if (isset($route['as']))
@@ -178,6 +198,34 @@ class Router {
         }
 
         return true;
+    }
+
+    /**
+     *	Starts a new router group.
+     *
+     * @param  $attrs
+     * @return void
+     */
+    public function group( $attrs )
+    {
+        if ( isset( $attrs['middlewares'] ) )
+        {
+            if ( is_string( $attrs['middlewares'] ) )
+            {
+                $this->middlewares[] = $attrs['middlewares'];
+            }
+            else
+            {
+                $this->middlewares = $attrs['middlewares'];
+            }
+        }
+        if ( isset( $attrs['prefix'] ) )
+        {
+            $this->prefix = $attrs['prefix'];
+        }
+        $this->fetch( $attrs['uses'], array() );
+        $this->middlewares = array();
+        $this->prefix = '';
     }
 
     /**
@@ -235,44 +283,115 @@ class Router {
             $data['parameters'][$key] = $wp->query_vars['cartrabbit_param_' . $key];
         }
 
-        try {
-            $this->processRequest(
-                $this->buildRoute(
-                    $route,
-                    $data['parameters']
-                )
-            );
-        } catch (HttpErrorException $e) {
-            if ($e->getStatus() === 301 || $e->getStatus() === 302)
-            {
-                $this->processResponse($e->getResponse());
-
-                die;
-            }
-
-            if ($e->getStatus() === 404)
-            {
-                global $wp_query;
-                $wp_query->set_404();
-            }
-
-            status_header($e->getStatus());
-
-            define('CARTRABBIT_HTTP_ERROR_CODE', $e->getStatus());
-            define('CARTRABBIT_HTTP_ERROR_MESSAGE', $e->getMessage());
-
-            if ($e->getStatus() === 404)
-            {
-                @include get_404_template();
-            }
-            else
-            {
-                echo $e->getMessage();
-            }
-        }
+        $this->process_request( $route, $data['parameters'] );
 
         die;
     }
+
+    /**
+     * Handles the response of the route.
+     *
+     * @param  $route
+     * @param  $args
+     */
+    public function process_request( $route, $args = array() )
+    {
+        $request = new Request();
+        $request->merge( $args );
+        $middlewares = array();
+        if(isset($route['middlewares'])){
+            $middlewares = $route['middlewares'];
+        }
+        $store = array(
+            'middlewares' => $middlewares,
+            'route' => $route,
+            'args' => $args
+        );
+
+        return $this->next( $request, $route, $store, true );
+    }
+
+    /**
+     * Handle the next / request response
+     * */
+    public function next( $request, $route, $store, $first = false )
+    {
+        if ( (isset( $store['middlewares'][0] ) && $first) || isset( $store['middlewares'][1] ) )
+        {
+            if ( !$first )
+            {
+                array_shift( $store['middlewares'] );
+            }
+            $this->fetch( $store['middlewares'][0] .'@run', array(
+                $request,
+                $this,
+                $store
+            ) );
+        } else {
+            try {
+                $this->processRequest(
+                    $this->buildRoute(
+                        $store['route'],
+                        $store['args']
+                    )
+                );
+            } catch (HttpErrorException $e) {
+                if ($e->getStatus() === 301 || $e->getStatus() === 302)
+                {
+                    $this->processResponse($e->getResponse());
+
+                    die;
+                }
+
+                if ($e->getStatus() === 404)
+                {
+                    global $wp_query;
+                    $wp_query->set_404();
+                }
+
+                status_header($e->getStatus());
+
+                define('CARTRABBIT_HTTP_ERROR_CODE', $e->getStatus());
+                define('CARTRABBIT_HTTP_ERROR_MESSAGE', $e->getMessage());
+
+                if ($e->getStatus() === 404)
+                {
+                    @include get_404_template();
+                }
+                else
+                {
+                    echo $e->getMessage();
+                }
+            }
+        }
+    }
+
+    /**
+     * Fetches a controller or callbacks response.
+     *
+     * @param $callback
+     * @param array $args
+     * @return mixed
+     */
+    public function fetch( $callback, $args = array() )
+    {
+        if ( is_string( $callback ) )
+        {
+            list( $class, $method ) = explode( '@', $callback, 2 );
+            $middlewares = $this->app->getMiddlewares();
+            if(isset($middlewares[$class])){
+                $class = $middlewares[$class];
+            }
+            if(class_exists($class)){
+                $controller = new $class;
+            } else {
+                throw new InvalidArgumentException("Middleware {$class} not defined");
+            }
+            return call_user_func_array( array( $controller, $method ), $args );
+        }
+        return call_user_func_array( $callback, $args );
+    }
+
 
     /**
      * Build a route instance.

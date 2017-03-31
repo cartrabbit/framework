@@ -1,4 +1,4 @@
-<?php
+    <?php
 /**
  * Cartrabbit - A PHP Framework For Wordpress
  *
@@ -139,6 +139,13 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
      * @var array
      */
     protected $builtViewGlobals = null;
+
+    /**
+     * The middlewares.
+     *
+     * @var array
+     */
+    protected $middlewares = array();
 
     /**
      * Constructs the application and ensures it's correctly setup.
@@ -458,8 +465,22 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
 
         $this->plugins[] = $plugin;
 
+        $this->registerPluginMiddlewares($plugin);
         $this->registerPluginProviders($plugin);
         $this->registerPluginAliases($plugin);
+    }
+    
+    /**
+     * To registers Middlewares
+     * */
+    protected function registerPluginMiddlewares(Plugin $plugin)
+    {
+        $config = $plugin->getConfig();
+        if(isset($config['middlewares']) && is_array($config['middlewares'])){
+            foreach ($config['middlewares'] as $name => $middlewareClass){
+                $this->middlewares[$name] = $middlewareClass;
+            }
+        }
     }
 
     /**
@@ -1285,5 +1306,14 @@ class Application extends \Illuminate\Container\Container implements \Illuminate
     public function getCachedServicesPath()
     {
         return $this->basePath() . '/vendor/services.json';
+    }
+
+    /**
+     * To get the middlewares
+     *
+     * @return array
+     */
+    public function getMiddlewares(){
+        return $this->middlewares;
     }
 }
